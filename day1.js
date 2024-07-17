@@ -1,10 +1,10 @@
+//Day 1: Variables and Data Types
+
 // Achievements:
 // 1. Know how to declare variables using var, let, and const.
 // 2. Understand the different datat types in JavaScript.JavaScript
 // 3. Be able to use the typeof operator to identify the data type of a variable.
 // 4. Understand the concept of variable reassignment and the immutability of const variables
-
-//Day 1: Variables and Data Types
 
 //Activity 1: Variable Declaration
 //Task 1:

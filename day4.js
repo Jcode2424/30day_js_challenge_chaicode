@@ -127,3 +127,10 @@ for (i = 2; i <= 9; i++) {
         break;
 }
 console.log(str7);
+
+//Feature Request:
+// 1. Number Printing Script
+// 2. Multiplication Table Script
+// 3. Pattern Printing Script
+// 4. Sum Calculation Script
+// 5. Factorial Calculation Script
