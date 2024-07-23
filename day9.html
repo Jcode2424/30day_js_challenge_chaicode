@@ -1,0 +1,58 @@
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Change Element</title>
+        <style>
+            .third {
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+                display: inline-block;
+                background-color: rgb(211, 211, 213);
+            }
+            .fourth {
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+                background-color: rgb(15, 249, 249);
+                border: 2px dotted navy
+            }
+        </style>
+	</head>
+	<body>
+		<!-- <script src = "day9.js" defer></script> -->
+		<p id="first">Born to code.</p>
+		<p class="fourth">Born to Code.</p>
+		<p style="background-color: lightcoral;" class="second">This used to be yellow.</p>
+		<p style="background-color: lightcoral;" class="second">This used to be yellow.</p>
+        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" ,="" alt="A Lizzard">
+        <button id="myButton">Click me!</button>
+        <script>  
+            document.addEventListener('DOMContentLoaded', (event) => {
+                console.log("DOM fully loaded and parsed");
+                const button = document.getElementById('myButton');
+                function changeTextContent() {
+                    button.textContent = 'Clicked!';
+                }
+                button.addEventListener('click', changeTextContent);
+
+                const pelem = Array.from(document.getElementsByClassName('fourth'));
+                function changeBorderColor(event) {
+                    pelem[0].style.borderColor = 'red';
+                }
+                function resetBorderColor(event) {
+                    pelem[0].style.borderColor = 'yellow';
+                }
+                pelem[0].addEventListener('mouseover', changeBorderColor);
+                pelem[0].addEventListener('mouseout', resetBorderColor);
+            });
+        </script>
+        
+        <ul class="third">
+            <li>list item1</li>
+            <li>list item2</li>
+            <li>list item3</li>
+            <li>list item4</li>
+        </ul>
+        <script src="day9.js"></script>
+    </body></html>
