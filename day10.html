@@ -1,0 +1,201 @@
+<!-- Day 10: Event Handling -->
+<!-- Achievements:
+ 1. Add and handle basic events like click, double-click, mouseover, mouseout, keydown and keyup.
+ 2. Understand and handle form events.
+ 3. Implement event delegation to manage events on dynamically added elements.
+ 4. Make web pages interactive by responding to various user actions.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Event Handling</title>
+    <style>
+        .first {
+            width: 200px;
+            height: 200px;
+            display: block;
+            border: 2px double teal
+        }
+        .hidden {
+            display: none;
+        }
+        .second {
+            height: 200px;
+            display: block;
+            color: white;
+            background-color: navy;
+            border: 2px dotted yellow;
+        }
+    </style>
+</head>
+<body>
+    <p>This paragraph is about to be changed.</p>
+    <button>change text</button>
+
+    <br><br>
+
+    <img src = "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" class = "first hidden" alt = "scenery"/>
+    <button id="toggleButton">Double Click to See Image</button>
+    
+    <br><br>
+
+    <p class="second">This paragraph's background color will be changed</p>
+    <button id="colorchange">Hover over me</button>
+    
+    <br><br>
+
+    <input class="first" type="text" id="inputField" placeholder="Type something...">
+    <p class="first" id="displayParag">Current Value: </p>
+    
+    <br><br>
+
+    <form id="myForm">
+        <label for="inputField2">Name:</label>
+        <input type="text" id="inputField2" name="inputField2" placeholder="Type your name.">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <br><br>
+    
+    <label for="mySelect">Choose an option:</label>
+    <select id="mySelect">
+        <option value="None"></option>
+        <option value="Address">Address</option>
+        <option value="Age">Age</option>
+        <option value="Gender">Gender</option>
+    </select>
+    <p id="displayParag2">Selected value will appear here.</p>
+
+    <br><br>
+
+    <ul id="myList">
+        <li>Red</li>
+        <li>Green</li>
+        <li>Yellow</li>
+    </ul>
+    <form id="myForm2">
+        <label for="colorText">Color:</label>
+        <input type="text" id="colorText" name="colorText" placeholder="Type a name of a color.">
+        <button type="submit" id="addColor">Submit</button>
+    </form>
+
+    <script>
+    //Activity 1: Basic Event Handling
+    //Task 1:
+        console.log("Script loaded.");
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const button1 = Array.from(document.getElementsByTagName('button'));
+            const parag1 = Array.from(document.getElementsByTagName('p'));
+
+            button1[0].addEventListener('click', () => {
+                parag1[0].textContent = 'The text has been changed.';
+            });
+    //Task 2:
+            const button2 = document.getElementById('toggleButton');
+            const image = Array.from(document.getElementsByClassName("first"));
+
+            button2.addEventListener('dblclick', () => {
+                if (image[0].classList.contains('hidden')) {
+                    image[0].classList.remove('hidden');
+                } else {
+                    image[0].classList.add('hidden');
+                }
+            });
+    
+    //Activity 2: Mouse Events
+    //Task 3:
+    //Task 4:
+            const button3 = document.getElementById('colorchange');
+            const parag2 = document.querySelector('p.second');
+
+            button3.addEventListener('mouseover', () => {
+                parag2.style.backgroundColor = 'lightblue';
+                parag2.style.color = 'black';
+
+            button3.addEventListener('mouseout', () => {
+                parag2.style.backgroundColor = 'navy';
+                parag2.style.color = 'white';
+            })
+        });
+
+        //Activity 3: Keyboard Events
+        //Task 5:
+        //Task 6:
+            const inputField1 = document.getElementById('inputField');
+            const displayParag = document.getElementById('displayParag');
+        
+            inputField1.addEventListener('keydown', (event) => {
+                console.log(`Key pressed: ${event.key}`);
+            });
+            inputField1.addEventListener('keyup', (event) => {
+                displayParag.textContent = 'Current value: ' + inputField1.value;
+            });
+        //Activity 4: Form Events
+        //Task 7:
+        //Task 8:
+            const form = document.getElementById('myForm');
+            const inputField2 = document.getElementById('inputField2');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const userInput = inputField2.value.trim();
+                if (userInput) {
+                    console.log('Input Value:', userInput);
+                } else {
+                    alert("Please enter your name.");
+                }
+            });
+
+            const selectElem = document.getElementById('mySelect');
+            const displayParag2 = document.getElementById('displayParag2');
+
+            selectElem.addEventListener('change', (event) => {
+                const selectedValue = event.target.value;
+                displayParag2.textContent = `Selected Element: ${selectedValue}`;
+            });
+        
+        //Activity 5: Event Delegation
+        //Task 9:
+        //Task 10:
+        const list = document.getElementById('myList');
+        const addColorButton = document.getElementById('addColor');
+        const colorTextInput = document.getElementById('colorText');
+        const form2 = document.getElementById('myForm2');
+
+        list.addEventListener('click', (event) => {
+            if(event.target && event.target.nodeName === 'LI') {
+                console.log('Clicked list item is: ', event.target.textContent);
+            }
+        });
+
+        form2.addEventListener('submit', (event) => {
+            event.preventDefault();
+   
+            const newColor = document.createElement('li');
+            const userInput = colorTextInput.value.trim();
+
+            if (userInput) {
+                newColor.textContent = userInput;
+                list.appendChild(newColor);
+                colorTextInput.value = '';
+            } else {
+                alert ('Please enter a color.');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
+
+<!-- Feature Requests:
+1. Click Event Script: Create a script that adds a click event listener to a button
+   to change the text content of a paragraph.
+2. Mouse Events Script: Create a script that handles mouseover and mouseout events 
+   to change the background color of an element.
+3. Keyboard Events Script: Write a script that logs key presses and displays input field
+   values using keydown and keyup event listeners.
+4. Form Events Script: Create a script that handles form submission and change events
+   on a select dropdown.
+5. Event Delegation Script: Write a script that demonstrates event delegation by handling
+   events on dynamically added child elements. -->
